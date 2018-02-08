@@ -6,8 +6,6 @@ if sys.version_info < (3, 0):
 
 import random
 import time
-import shutil
-import argparse
 import urllib.parse
 
 try:
@@ -31,7 +29,6 @@ class ImageDownloader:
         self.url = url
         self.domain_name = urllib.parse.urlparse(self.url).hostname
         self.seq = 0
-        self.find_images()
 
     def page_source(self):
         print("Trying to connect to page...")
@@ -78,8 +75,8 @@ class ImageDownloader:
         elif ".gif" in img_link:
             print(".gif")
             return ".gif"
-
-        
+        else:
+            return None
 
     def save_image(self, img_link: str):
         time.sleep(random.randrange(1, 5))
@@ -100,5 +97,8 @@ class ImageDownloader:
                 print("not a supported image")
 
     
-
-ImageDownloader("http://thechive.com/category/sexy-girls/hot-women/")
+if __name__ == "__main__":
+    url = "http://thechive.com/category/sexy-girls/hot-women/"
+    ImageDownloader(url).find_images()
+    
+        
