@@ -98,7 +98,7 @@ class ImageDownloader:
 
     
 if __name__ == "__main__":
-    url = "http://thechive.com/category/sexy-girls/hot-women/"
+    url = ""
     ImageDownloader(url).find_images()
     
         
