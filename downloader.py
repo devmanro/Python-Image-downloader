@@ -31,6 +31,7 @@ class ImageDownloader:
         self.seq = 0
 
     def page_source(self):
+        """ tries to connect to given URL via intermediate connector """
         print("Trying to connect to page...")
         try:
             req = self.intermediate_connector(self.url)
@@ -45,6 +46,7 @@ class ImageDownloader:
 
     @staticmethod
     def intermediate_connector(link:str):
+        """waits for a random amount of time, uses user agents and connects to a webpage and downloads it """
         time.sleep(random.randrange(1, 5))
         headers = {"User-Agent": random.choice(user_agents)}
         response = requests.get(link, headers=headers)
@@ -52,6 +54,7 @@ class ImageDownloader:
         return response.content
     
     def find_images(self):
+        """scans a beautiful soup object for all image links"""
         source = self.page_source()
         soup = bs.BeautifulSoup(source, 'lxml')
         for image in soup.find_all("img"):
@@ -65,6 +68,7 @@ class ImageDownloader:
             self.save_image(img_link)
 
     @staticmethod
+    """ returns the file type of image in passed image url"""
     def get_file_type(img_link: str):
         if ".jpg" in img_link:
             print(".jpg")
@@ -79,6 +83,7 @@ class ImageDownloader:
             return None
 
     def save_image(self, img_link: str):
+        """connects to the image link and saves the image with the correct extension """
         time.sleep(random.randrange(1, 5))
         #img_link = "https://thechive.files.wordpress.com/2018/01/bikinis.jpg?quality=85&strip=info&w=600&h=450&crop=1"
         headers = {"User-Agent": random.choice(user_agents)}
