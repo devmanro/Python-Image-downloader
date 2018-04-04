@@ -2,7 +2,7 @@
 
 """
 Author:- Pritesh Ranjan (pranjan341@gmail.com)
-Thhis is an image downloader script. It can take an input URL and download all the images from that web page.
+This is an image downloader script. It can take an input URL and download all the images from that web page.
 """
 
 import sys
